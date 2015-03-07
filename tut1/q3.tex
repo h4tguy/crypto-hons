@@ -1,0 +1,64 @@
+\begin{enumerate}
+\item Let $H_n$ be the space of $n$-bit words and let $M$ be a space of message
+blocks (typically $k$-bit words for $k>n$). Let $f: H_n \times M \rightarrow H_n$
+be a function with an efficient inverse (given $m \in M$ and
+$h \in H_n$, there is an efficient way of computing an $h'$ such that $f(h',m)=h$).
+Also suppose that the values of this inverse function, as a function of $m$,
+are randomly distributed in $H_n$.
+
+We demonstrate an $\mathcal{O}(2^{n/2})$ -time and -space attack on a
+Merkle-Damgard hash function using $f$ as a compression function. Let $M^*$ be
+the set of arbitrary-length tuples of members of $M$. The hash function can
+then be interpreted as a function $F: H_n \times M^* \rightarrow H_n$, where
+\begin{eqnarray*}
+F(h_0,(m_0,m_1,\dots,m_l))=f(f(\dots f(f(h_0,m_0),m_1)\dots,m_{l-1}),m_l).
+\end{eqnarray*}
+For a final hash value $h_{target}$ and an intialization vector $h_0$, our attack
+finds a message $\nu$ with $F(h_0,\nu)=h_{target}$.
+
+Our attack consists of two stages. In the first we determine a message
+$\mu = (m_0,m_1,\dots,m_{2^{n/2}})$ and an initialisation vector (of our choice)
+$\eta$, such that $f(\eta,\mu)=h_{target}$. The second stage finds a message $\nu$
+such that $F(h_0,\nu)=F(\eta,\mu)$.
+
+For the first stage, let $\mu_0$ be the empty message. Also set $g_0=h_{target}$. Then clearly 
+$F(h_{target},\mu_0)=h_{target}$. We now generate sequences $(\mu_i),(g_i)$ of length $2^{n/2}$ 
+such that at any stage $F(g_i,\mu_i)=h_{target}$, and the $g_i$ are distinct.
+Given $\mu_i$ and $g_i$, in order to determine the next elements in the sequences,
+choose a random message block $m'$. We can then efficiently find an $n$-bit word $g'$ with
+$f(g',m')=g_i$. If $g'$ is distinct from each $g_j$ with $j\le i$, then set $g_{i+1}=g'$
+and let $\mu_{i+1}$ to be $\mu_i$ with $m'$ prepended Then clearly 
+\begin{eqnarray*}
+	F(g_{i+1},\mu_{i+1})&=&F(f(g_{i+1},m'),\mu_i)\\
+																		 &=&F(g_i,\mu_i)\\
+																		 &=&h_{target}.
+\end{eqnarray*}
+Otherwise, choose a new $m'$
+and repeat until $g'$ is distinct from the $g_j$ with $j\le i$. Since there are $i+1$ values
+of $g_j$ and $2^n$ possible values of $g'$,  and the values of
+the inverse function are randomly distributed, the probability of a collision is $\frac{i+1}{2^n}$.
+But $i+1\lesssim 2^{n/2}$, so the probability of a collision at any stage
+of the algorithm is small ($\mathcal{O}(2^{-n/2})$) and the expected number of collisions
+when generating $2^{n/2}$ members of the sequence is $\mathcal{O}(1)$. Finally, set $\mu = \mu_{2^{n/2}}$
+and $\eta=g_{2^{n/2}}$. Then $F(\eta,\mu)=h_{target}$, and the length of $\mu$ is $2^{n/2}$ as required.
+
+For the second stage we simply use the long message attack. The message $\mu$
+we have calculated is of length $2^{n/2}$ so the long message attack will take
+$\mathcal{O}(2^{n-n/2})=\mathcal{O}(2^{n/2})$ time and space. This attack will
+calculate a message $\nu=\nu'+\mu_i$, for some $i$, such that $F(h_0,\nu)=h_{target}$
+as required.
+
+Finally, block ciphers have an efficient inverse if the key (in this case a block
+of the message to be hashed) is known. So the attack above can be applied to block ciphers
+if they are used as a compression function in a Merkle-Damgard hash function. However, if the encryption
+takes the exclusive or of the result of the block cipher and the previous chaining
+value, the inverse function can no longer be efficiently computed, and the attack fails.
+
+\item $(h_i,m_{i+1})$ is a fixed point iff 
+	\begin{eqnarray*}
+		&&f(h_i,m_{i+1})=h_i \\
+		&\Leftrightarrow& E_{m_{i+1}}(h_i)\oplus h_i = h_i \\
+		&\Leftrightarrow& E_{m_{i+1}}(h_i)=0.
+	\end{eqnarray*}
+	So, for any value of $m_{i+1}$, then if $h_i=E^{-1}_{m_{i+1}}(0)$, then $(h_i,m_{i+1})$ is a fixed point.
+\end{enumerate}
