@@ -1,0 +1,25 @@
+\begin{enumerate}
+\item All permutations $f$ are invertible. In particular,  they are injective, so
+$f(x)=f(y) \Rightarrow x=y$ and hence there are no collisions. They still have
+cycles though. In fact, every value is in a cycle, so Floyd's cycle finding algorithm
+will find exactly the length of the cycle a particular value is on, instead of
+just a multiple of it. The second part of the attack, that designed to use the
+cycle to find collisions, will fail since there are no collisions to find.
+
+%\item We assume that a meaningful message followed by some random data is
+%still meaningful. This is reasonable because adding randomness to messages to
+%increase their entropy is considered good practice. Let $H$ be the hash function
+%one is attempting to find a collision for, and let $m_0$ and $m_1$ be two
+%meaningful messages that one wishes to find a collision for. Let $\|$ be the
+%concatenation operator and let $a%b$ be the least postive member of the residue
+%class of $a$ modulo $b$. For a tuple $(a,m)$, where $a\in\{0,1\}$ and $m$ is a
+%bit string, we call $a$ the parity and $m$ the message.
+%Now consider the function $G(a,m)=((a+1)%2,m_a\|H(m))$.
+%Use Floyd's cycle finding attack starting at $g_0=(0,m_0)$ to find a collision for
+%$G$, say $G(g_n)=G(g_{n'})$ with $n<n'$ (here $g_{i+1}=G(g_i)$).
+%$n-n'$ must be even, since the parity in
+%$g_i$ alternates through $G$. Now consider the minimal $i$ such that the message
+%in $g_i$ is equal to the message in some $g_j$ with $j<i$. This $i$ is expected to be
+%large, and $H$ is expected to have ``random'' behaviour, so $i-n$ will be odd with
+%probability $50\%$. Also note that if
+\end{enumerate}
