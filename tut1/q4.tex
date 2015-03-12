@@ -56,6 +56,8 @@ $m$ of the preimage of a given hash value $f(m)$. If we were given a message
 $m_1$ and its hash value $f(m_1)$, we would expect to be able to find a second
 preimage $m_2$, as we can easily find preimages. This doesn't apply to the
 function in (b), because that function is collision resistant and therefore
-second-preimage resistant (by (a)), but isn't one-way.
+second-preimage resistant (by (a)), but isn't one-way. Also, the part of the
+function that is easily invertible only gives singleton preimages, so there is
+no second member of the preimage to be found.
 
 \end{enumerate}
