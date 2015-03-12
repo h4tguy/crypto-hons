@@ -27,7 +27,7 @@ such that at any stage $F(g_i,\mu_i)=h_{target}$, and the $g_i$ are distinct.
 Given $\mu_i$ and $g_i$, in order to determine the next elements in the sequences,
 choose a random message block $m'$. We can then efficiently find an $n$-bit word $g'$ with
 $f(g',m')=g_i$. If $g'$ is distinct from each $g_j$ with $j\le i$, then set $g_{i+1}=g'$
-and let $\mu_{i+1}$ to be $\mu_i$ with $m'$ prepended Then clearly 
+and let $\mu_{i+1}$ be $\mu_i$ with $m'$ prepended. Then clearly 
 \begin{eqnarray*}
 	F(g_{i+1},\mu_{i+1})&=&F(f(g_{i+1},m'),\mu_i)\\
 																		 &=&F(g_i,\mu_i)\\
@@ -46,7 +46,8 @@ For the second stage we simply use the long message attack. The message $\mu$
 we have calculated is of length $2^{n/2}$ so the long message attack will take
 $\mathcal{O}(2^{n-n/2})=\mathcal{O}(2^{n/2})$ time and space. This attack will
 calculate a message $\nu=\nu'+\mu_i$, for some $i$, such that $F(h_0,\nu)=h_{target}$
-as required.
+as required. In particular, the message found at this stage will have the required
+initialisation vector, as opposed to one of our choosing.
 
 Finally, block ciphers have an efficient inverse if the key (in this case a block
 of the message to be hashed) is known. So the attack above can be applied to block ciphers
