@@ -1,0 +1,31 @@
+\begin{enumerate}
+\item All permutations $f$ are invertible. In particular,  they are injective, so
+$f(x)=f(y) \Rightarrow x=y$ and hence there are no collisions. They still have
+cycles though. In fact, every value is in a cycle, so Floyd's cycle finding algorithm
+will find exactly the length of the cycle a particular value is on, instead of
+just a multiple of it. The second part of the attack, that designed to use the
+cycle to find collisions, will fail since there are no collisions to find.
+
+\item We assume that a meaningful message followed by some random data is
+still meaningful. This is reasonable because adding randomness to messages to
+increase their entropy is considered good practice. Let $H$ be the hash function
+one is attempting to find a collision for, and let $m_0$ and $m_1$ be two
+meaningful messages that one wishes to find a collision for. Let $\|$ be the
+concatenation operator and let $a\%b$ be the least postive member of the residue
+class of $a$ modulo $b$. Let $g_0=m_0\|r$, where $r$ is a random bit string.
+Let $g_{i+1}=G(g_i)=H(m_{g_i\%2}\|g_i)$. Then Floyd's cycle finding attack will
+find $i,j$ with $G(g_i)=G(g_j)$ in $\mathcal{O}(2^{n/2})$ time. With probability
+$50\%$ (since $H$ is equidistributed over even and odd numbers), $g_i\not\equiv_2 g_j$
+and hence $H(m_0\|g_{i'})=G(g_{i'})=G(g_{j'})=H(m_1\|g_{j'})$ where $i',j'$ are
+a permutation of $i,j$. In this case we have found a collision between messages
+with prefixes of our choice and we are done. Otherwise we repeat the algorithm
+with a different value of $r$ until we succeed. Since the probability of success
+on each iteration is $1/2$, the expected number of iterations is
+\begin{eqnarray*}
+	\frac{1}{2}+\frac{2}{4}+\frac{3}{8}+\dots = 2
+\end{eqnarray*}
+Hence the expected number of iterations is $\mathcal{O}(1)$ and the algorithm
+takes $\mathcal{O}(2^{n/2})$ time (and $\mathcal{O}(n)$ space, like the original
+cycle finding algorithm).
+
+\end{enumerate}
