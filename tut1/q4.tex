@@ -1,16 +1,66 @@
-%Collision resistance in a hash function means that finding two messages $m_1$ and $m_2$ with the same hash $h = f(m_1) = f(m_2)$ requires, on average, as much computation as finding such a collision with a brute force attack (hashing messages at random until a collision is found). For a binary string of length $N$, there are $2^N$ possible strings that such a brute force attack would ever have to consider. However, due to the birthday paradox, on average an attacker will only have to find the hashes of $2^(N/2)$ messages before finding a collision. This means that a collision resistant function requires an attacker to hash an average of $2^(N/2)$ messages before they find a collision.
+%Collision resistance in a hash function means that finding two messages $m_1$
+%and $m_2$ with the same hash $h = f(m_1) = f(m_2)$ requires, on average, as
+%much computation as finding such a collision with a brute force attack (hashing
+%messages at random until a collision is found). For a binary string of length
+%$N$, there are $2^N$ possible strings that such a brute force attack would
+%ever have to consider. However, due to the birthday paradox, on average an
+%attacker will only have to find the hashes of $2^(N/2)$ messages before
+%finding a collision. This means that a collision resistant function requires
+%an attacker to hash an average of $2^(N/2)$ messages before they find a
+%collision.
 
 
-%If we have a hash function $h$ that is collision resistant, an attacker cannot find any two messages with the same image under this function faster than using brute force (hashing messages until they find a collision). If such an attacker knows of a message and its corresponding hash
-% 4.a - contrapositive
+%If we have a hash function $h$ that is collision resistant, an attacker
+%cannot find any two messages with the same image under this function faster
+%than using brute force (hashing messages until they find a collision). If
+%such an attacker knows of a message and its corresponding hash.
+%4.a - contrapositive
 \begin{enumerate}
-\item[4.a] Consider the contrapositive. If a hash function is not second-preimage resistant, then, when given an arbitrary hash value and one of its preimages, we can find a second preimage faster than a brute force search. If this hash function is not collision resistant, then we can find two messages with the same hash faster than a brute force search (hashing approximately $2^(N/2)$ messages for n-bit messages).
+\item Consider the contrapositive. If a hash function is not second-preimage
+  resistant, then, when given an arbitrary hash value and one of its preimages,
+  we can find a second preimage faster than a brute force
+  search.
 
-Given a hash function $h$ that isn't second preimage resistant, we can take an n-bit message $m_1$ and its hash $h(m_1)$ and find a second message $m_2$ such that $h(m_1) = h(m_2)$. We now have two images that have the same hash (which is a collision), showing that $h$ is not collision resistant.
+If this hash function is not collision resistant, then we can find two
+messages with the same hash value faster than a brute force search (hashing
+approximately $2^{N/2}$ messages for $n$-bit messages).
+
+Given a hash function $h$ that isn't second preimage resistant, we can take
+an $n$-bit message $m_1$ and its hash value $h(m_1)$ and find a second
+message $m_2$ such that $h(m_1) = h(m_2)$. We now have two images that have
+the same hash value (which gives us a collision), showing that $h$ is not
+collision resistant.
+
+%4.b - http://www.cs.usfca.edu/~ejung/courses/686/lectures/05hash.pdf
+\item Given an $n-1$-bit collision resistant hash function $h$, construct
+  another hash function \\
+  $g(x) = \left\{
+    \begin{array}{lr}
+      0|x & : \text{if x is length }n-1\\
+      1|g(x) & : \text{otherwise}
+    \end{array}
+    \right\}$ \\
+    %if this is too ugly, I could try cases from amsmath:
+    %http://tex.stackexchange.com/questions/74129/piecewise-function
+
+Now, any value produced by this function that starts with 0 is easily
+invertible - its preimage is the last $n-1$ bits of the hash value. A hash
+value whose first bit is 1 might not be easily invertible, but at least half
+of the possible hash values are easily invertible (specificaly the half whose
+first bit is 0). Despite the ease with which these preimages can be found,
+collisions are still difficult to find. The hash values that start with 0 have
+no collisions (by definition, as each corresponds to a unique $n-1$ bit string
+), while those that start with 1 have as many collisions as $g(x)$. Since $g$ is
+collision resistant, the hash values that $h$ generates either have no
+collisions or are difficult to find, making $h$ collision resistant.
+
+%4.c - not one-way => can generate preimage set given hash => can generate
+%all other preimages given hash and preimage
+\item Given a hash function $f$ that is not one-way, we can easily find a member
+$m$ of the preimage of a given hash value $f(m)$. If we were given a message
+$m_1$ and its hash value $f(m_1)$, we would expect to be able to find a second
+preimage $m_2$, as we can easily find preimages. This doesn't apply to the
+function in (b), because that function is collision resistant and therefore
+second-preimage resistant (by (a)), but isn't one-way.
+
 \end{enumerate}
-
-% 4.b - http://www.cs.usfca.edu/~ejung/courses/686/lectures/05hash.pdf
-Given an $n-1$-bit collision resistant hash function $h$, construct another hash function $g(x) = {0||x if x is length n-1, else 1||g(x)}$. Now, any hash produced by this function that starts with 0 is easily invertible - its preimage is the last n-1 bits of the hash. A hash that starts with 1 might not be easily invertible, but at least half of the possible hash values are easily invertible (specificaly the half whose first bit is 0). Despite the ease with which these preimages can be found, collisions are still difficult to find. The hash values that start with 0 have no collisions (by definition, as each corresponds to a unique $n-1$ bit string), while those that start with 1 have as many collisions as $g(x)$. Since $g$ is collision resistant, the hash values that h generates starting with 1 ,
-
-% 4.c - not one-way => can generate preimage set given hash => can generate all other preimages given hash and preimage
-Given a hash function $f$ that is not one-way, we can easily find a member $m$ of the preimage of a given hash value $f(m)$. If we were given a message $m_1$ and its hash $f(m_1)$, we would expect to be able to find a second preimage $m_2$, as we can easily find pre-images. This doesn't apply to the function in (b), because that function is collision resistant and therefore second-preimage resistant (by (a)), but isn't one-way.
