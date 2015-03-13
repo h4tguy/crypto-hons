@@ -1,0 +1,14 @@
+First draw $k_1$ red balls without replacement, but such that $k_1 << m$. Then the probability that a randomly drawn blue ball (with replacement) does not collide with any of the $k_1$ red balls is $1-\frac{k_1}{m}$.
+
+So if $k_2$ blue balls are drawn (with replacement) the probability of there being no collisions is: 
+\begin{eqnarray*}
+    P(\text{no collision}) &=& \prod_{i = 0}^{k_2 - 1}(1-\frac{k_1}{m})\\
+    &\approx& \prod_{i = 0}^{k_2 - 1}(e^\frac{-k_1}{m}) \text{ since $k_1 << m$}\\
+    &\approx& (e^\frac{-k_1}{m})^{k_2}\\
+    &\approx& e^{\frac{-k_1 k_2}{m}}
+\end{eqnarray*}
+So:
+\begin{eqnarray*}
+    P(\text{collision}) &=& 1 - P(\text{no collision})\\
+    &\approx& 1 - e^\frac{-k_1 k_2}{m} 
+\end{eqnarray*}
