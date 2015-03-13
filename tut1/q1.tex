@@ -1,16 +1,16 @@
 \begin{enumerate}
 \item 
 As we learnt in lectures\cite{Slides_43}, the probability of drawing an
-individual ball at least twice twice after randomly drawing $k$ balls out of an
-urn containing $m$ balls is \[1 - e^{-\frac{k^2}{2m}}\] for $m,k >> 0$
+individual ball at least twice after randomly drawing $k$ balls out of an
+urn containing $m$ balls is \[1 - e^{-\frac{k^2}{2m}}\] for $m,k \gg 0$
 and $k << m$. 
 
-If we assume that a day has 365 days and that birthdays are uniformly
+If we assume that a year has 365 days and that birthdays are uniformly
 distributed across the days of the year, then the probability that
 2 people in a room of 30 share a birthday is approximately 
 \[1 - e^{-\frac{30^2}{2 \times 365}} \approx 0.71 \]
 
-We know that the odds of of drawing a particular ball out of an urn of $m$ balls
+We know that the odds of drawing a particular ball out of an urn of $m$ balls
 after $k$ tries 
  is \[1-e^{-\frac{k}{m}}\]\cite{Slides_36}. The chance that someone has a
  particular birthday (i.e. mine) in a room of 30 people is approximately \[1 -
@@ -20,11 +20,11 @@ after $k$ tries
 
 If we number all 300 people from $p_1$ to $p_{300}$, then the probability that
 $p_1$'s birthday is distinct from $p_2$ is $1-\frac{1}{365}$. Similarly, the
-probability that $p_i$'s birthday is different from $p_j$'s for $j < i$ is $1 -
+probability that $p_i$'s birthday is different from $p_j$'s for all $j < i$ is $1 -
 \frac{i}{365}$. This means that the probability that at least one person shares
 a birthday with someone else in that room is 
 \[1 - \prod^{299}_{i=0} \left(1 - \frac{i}{365} \right) \approx
-6.24 \times 10^{-82}\]
+1 - (6.24 \times 10^{-82})\]
 
 The probability that any individual has my birthday is $\frac{1}{365}$, so the
 probability that in a room of 300 that no-one has my birthday is \[\left(1 -
@@ -42,12 +42,12 @@ p &=1 - e^{-\frac{k^2}{2m}} \\
 \end{align*}
 
 For 2 people sharing a birthday with 75\% probability, we need
-\[\sqrt{-(2 \times 365)\ln(1-0.75)} = \sqrt{730\ln(0.25)} \approx 31.81 \text{
+\[\sqrt{-(2 \times 365)\ln(1-0.75)} = \sqrt{730\ln(0.25)} \approx 32 \text{
 People}\] 
 
 \item
 
-366 by the Pidgeon Hole Principle. 
+366 by the Pidgeon Hole Principle, assuming February 29th is not a birthday. 
 
 Intuitively, if there are 365 or fewer people in a room, then every person could
 have their own distinct birthday. Since this is possible with non-zero
@@ -56,12 +56,12 @@ share a birthday. With 366 people, two people will have to share a birthday as
 there are only 365 birthdays to go round as per the Pidgeon Hole Principle.
 \item 
 
-As derived in (b), the probability that out of a random group of 356 people that one
-will share my birthday is 
-\[1 - \left(1 - \frac{1}{365}\right)^365 \approx 63\%\]
+As derived in (b), the probability that out of a random group of 365 people at
+least one will share my birthday is 
+\[1 - \left(1 - \frac{1}{365}\right)^{365} \approx 63\%\]
 
 As per the notes\cite{Slides_46}, we have that it takes on average $m$ tries to
-pick a particular ball randomly form an urn with $m$ balls. This means that I
+pick a particular ball randomly from an urn with $m$ balls. This means that I
 should expect to ask 365 people on average before getting any particular fixed
 birthday.
 \end{enumerate}
