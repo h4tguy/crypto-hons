@@ -1,0 +1,8 @@
+Start by setting the IV to $00\dots 0$. Then the initial state $s_0s_1\dots s_{127}$
+is just the key. Now, note that there are 
+\[ \sum_{i=0}^{10} {128 \choose i} <2^{34}\] monomials in $s_0,s_1, \dots, s_{127}$
+which are linear in each variable and of total degree at most $10$. Running
+the filter generator for $2^{34}$ iterations will yield $2^{34}$ linear equations
+in these monomials. Gauss reduction on these equations will take approximately
+$(2^{34})^3 = 2^{102}$ steps. This will solve for $s_0,s_1,\dots, s_{127}$, which
+gives the key. This is an improvement by a factor of $2^{26}$ on the brute force.
