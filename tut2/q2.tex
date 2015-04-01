@@ -1,0 +1,20 @@
+\usepackage{amsfonts}
+
+\begin{enumerate}
+
+\item if $\underline{s}$ is a maximum length lfsr sequence of an lfsr of length
+$n$, then it has period $2^n-1$ (as covered in lectures). this means that the
+lfsr goes through $2^n-1$ distinct states before repeating a state.
+specifically, these states are the members of $\mathbb{f}_2^n \setminus
+(0,\dots,0)$. also, the first bits of these states are the bits of the sequence
+in a single period.
+
+to check whether $\underline{s}$ is balanced, we just need to check whether the
+first bits of the members of $\mathbb{f}_2^n \setminus (0,\dots,0)$ (the states)
+are balanced. clearly, there are $2^{n-1}$ states that start with 1 and
+$2^{n-1}-1$ states that start with 0 (since including (0,\dots,0) as a state
+implies that it is the only state). since the number of bits are odd and the
+zero state is not included, we would expect a balanced sequence to have one more
+1 than 0, which is what we have.
+
+\end{enumerate}
