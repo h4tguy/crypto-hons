@@ -2,19 +2,42 @@
 
 \begin{enumerate}
 
-\item if $\underline{s}$ is a maximum length lfsr sequence of an lfsr of length
-$n$, then it has period $2^n-1$ (as covered in lectures). this means that the
+\item If $\underline{s}$ is a maximum length lfsr sequence of an lfsr of length
+$n$, then it has period $2^n-1$ (as covered in lectures). This means that the
 lfsr goes through $2^n-1$ distinct states before repeating a state.
 specifically, these states are the members of $\mathbb{f}_2^n \setminus
-(0,\dots,0)$. also, the first bits of these states are the bits of the sequence
+(0,\dots,0)$. Also, the first bits of these states are the bits of the sequence
 in a single period.
 
-to check whether $\underline{s}$ is balanced, we just need to check whether the
+To check whether $\underline{s}$ is balanced, we just need to check whether the
 first bits of the members of $\mathbb{f}_2^n \setminus (0,\dots,0)$ (the states)
-are balanced. clearly, there are $2^{n-1}$ states that start with 1 and
+are balanced. Clearly, there are $2^{n-1}$ states that start with 1 and
 $2^{n-1}-1$ states that start with 0 (since including (0,\dots,0) as a state
-implies that it is the only state). since the number of bits are odd and the
+implies that it is the only state). Since the number of bits are odd and the
 zero state is not included, we would expect a balanced sequence to have one more
 1 than 0, which is what we have.
+
+\item A run of length $i$ occurs at a time $t$ if the state at $t-1$ starts with
+$i+2$ bits fixed (eg. $i$ 1s between two 0s or $i$ 0s between two 1s). There are
+$2 \times 2^{n-i-2} = 2^{n-1-i}$ such states that precede the start of a run of
+length i, accounting for both runs of 1s and of 0s.
+
+Any state that precedes the start of a run either starts with 01 or 10. This
+shows that approximately half of the states precede the start of a run: the half
+that begins with 01 or 10 rather than 11 or 00. If the total number of states is
+$tot_{states} = 2^n-1$ (excluding (0,\dots,0) ), then the number of states that
+precede the start of a run is $tot_{runs} = 2^{n-1}$ - half of the bit strings
+of length n.
+
+This shows that the number of runs of length $k$ is
+
+\[2^{n-1-k} = 2^{-k} \times 2^{n-1}\]
+
+which means that $2^{-k}$ of all runs are of length k.
+
+This breaks down when you consider runs of length n. However, there can only be
+one run of length n: the run of n 1s. The run of n 0s is the 0 state, and is
+never reached in a maximum-length LFSR whose initial state is non-zero (covered
+in class).
 
 \end{enumerate}
