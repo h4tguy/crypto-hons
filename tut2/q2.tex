@@ -16,10 +16,12 @@ $2^{L-1}-1$ states that start with 0 (since including $(0,\dots,0)$ as a state
 implies that it is the only state). Thus, the number of 0s and 1s differ by one
 and therefore the sequence is balanced.
 
-\item A run of length $i$ occurs at a time $t$ if the state at $t-1$ starts with
-$i+2$ bits fixed (eg. $i$ 1s between two 0s or $i$ 0s between two 1s). There are
-$2 \times 2^{L-i-2} = 2^{L-1-i}$ such states that precede the start of a run of
-length i, accounting for both runs of 1s and of 0s.
+\item A run of length $i$ occurs at a time $t$ with state $s_t$ if the preceding
+state at time $t-1$ (with state $s_{t-1}$) starts with $i+2$ bits fixed (eg. $i$
+1s between two 0s or $i$ 0s between two 1s). There are $2^{L-i-2}$ such states
+that precede the start of a run of i 0s or 1s. Accounting for both runs of 1s
+and of 0s, the total number of states that precede the start of any run is $2
+\times 2^{L-i-2} = 2^{L-i-1}$.
 
 Any state that precedes the start of a run either starts with 01 or 10. This
 shows that approximately half of the states precede the start of a run: the half
