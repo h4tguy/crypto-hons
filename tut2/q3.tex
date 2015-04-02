@@ -1,0 +1,39 @@
+Let $S(p)$ be the set of sequences with characteristic polynomial $p$. Firstly, suppose
+$f(X)$ and $g(X)$ are not divisible by $X$. Then, in particular,
+any sequence $s_0,s_1,\dots$ in $S(f)$ can be extended arbitrarily in the opposite
+direction to create a sequence $\dots,s_{-1},s_0,s_1,\dots$. This is clearly
+invertible on its image. Also, a similar embedding of $S(g)$ in the bidirectional
+sequences exists.
+The new sequence can then be associated with a bidirectional formal power series over
+$\mathbb{F}_2$, $\sum_{n=-\infty}^\infty s_ix^i$. Note that these formal power
+series are a module over $\mathbb{F}_2[1/x]$ with the natural definitions of addition
+and multiplication. 
+
+Denote by $S'(p)$ the set of formal power series corresponding
+to the sequences in $S(p)$. Clearly $P \in S'(p) \Leftrightarrow P(x)p(1/x)=0$ (this
+is just the equivalent of the recurrence associated with $p$ as given in \cite{slides}
+slide 25). Now suppose $F(x)\in S'(f),G(x)\in S'(g)$. Then 
+\begin{align*}
+(F(x) \oplus G(x))f(1/x)g(1/x) &= F(x)f(1/x)g(1/x)\oplus G(x)g(1/x)f(1/x) \\
+&= 0g(1/x)\oplus 0f(1/x) \\
+&= 0
+\end{align*}
+So $F(x) \oplus G(x) \in S'(fg)$ and hence $S'(f)\oplus S'(g) \subset S'(fg)$.
+Now suppose $A(x) \in S'(fg)$. Then since $f,g$ are
+coprime there are $a,b \in \mathbb{F}_2[X]$ with $af\oplus bg=1$. Then
+$A(x)=A(x)a(1/x)f(1/x)\oplus A(x)b(1/x)g(1/x)$. But 
+\[[A(x)a(1/x)f(1/x)]g(1/x)=a(1/x)[A(x)f(1/x)g(1/x)]=0,\] so
+$A(x)a(1/x)f(1/x) \in S'(g)$ and similarly
+$A(x)b(1/x)g(1/x) \in S'(f)$. Then $S'(fg) \subset S'(f)\oplus S'(g)$ and hence
+$S'(fg) = S'(f) \oplus S'(g)$, which is what we wanted to prove.
+
+Now suppose w.l.o.g. $f(X)=f'(X)X^k$, with $X^k$ and $f'(X)$ coprime,
+then we note that any $s$ in $S(f)$ may have its 
+first $k$ digits replaced arbitrarily without affecting whether it satisfies $f$.
+That is to say, $S(f)=\{(m\|s') |m\in\{0,1\}^k, s' \in S(f')  \}$.
+Now, $f(X)g(X)=f'(X)g(X)X^k$, with $f'(X)g(X)$ and $X^k$ coprime, so 
+$S(fg)=\{(m\|u') |n\in\{0,1\}^k, u' \in S(f'g)\}$. But $S(f'g)=S(f')\oplus S(g)$ (noting
+that the set of members of $S(g)$ with the first $k$ digits deleted is just $S(g)$),
+as shown above, and $\{0,1\}^k = \{0,1\}^k \oplus S(g)_k$, where $S(g)_k$ is the
+set of $k$ digit prefixes of $S(g)$ (in particular, $00\dots0$ is such a prefix).
+Therefore, $S(fg)=S(f)\oplus S(g)$.
