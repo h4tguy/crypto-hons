@@ -55,11 +55,16 @@ c_0 \\ c_1 \\ c_2 \\ c_3 \\ c_4
 
 This means that $c_0, c_3$ are 1 with $c_1, c_2, c_4$ being 0.
 
-\item See included diagram below. Here we depict each bit of the LFSR as a
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{lfsr.pdf}
+\label{fig:lfsr}
+\caption{The LFSR for Question 1. Here we depict each bit of the LFSR as a
 square, with the current state bits being highlighted in blue. The first and
 fourth bits of the LFSR state being XORed to create the new state bit $s_{t+5}$
-which will be the fifth bit of the LFSR state after $s_t$ is outputted.
-\includepdf[pages={1}]{lfsr.pdf}
+which will be the fifth bit of the LFSR state after $s_t$ is outputted.}
+\end{figure}
+\item See Figure \ref{fig:lfsr}. 
 
 \item One characteristic polynomial would be $F(X) = X^5 + X^3 + 1$.
 
