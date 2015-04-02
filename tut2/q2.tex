@@ -10,13 +10,14 @@ generates an m-sequence $(s_i)_{i=1}^\infty$. Then $\text{ker}(T^k+\mathbb{I})=\
 \paragraph{Proof of Lemma:} Define $V$ as $\text{im}(T^k+\mathbb{I})$ and let
 $c_T$ be the characteristic (and, in this case, minimal) polynomial of $T$.
 Suppose this were not the case, that
-$\text{dim ker}(T^k+\mathbb{I})>0$. Then $\text{dim}\ V<L$.
+$\text{dim ker}(T^k+\mathbb{I})>0$. Then $\text{dim}\ V<L$ by Rank-Nullity Theorem.
 But $V$ is $T$ invariant, since, for $v \in \mathbb{F}_2^L$,
 $T(T^k+\mathbb{I})v=(T^k+\mathbb{I})Tv$,
 so let $P$ be the characteristic polynomial of $T$ restricted to $V$.
 If $v$ is a vector in $\mathbb{F}^L_2$, then note $P(T)(T^k+\mathbb{I})v=0$,
 by Cayley-Hamilton theorem on $V$. So $P(T)(T^k+\mathbb{I})=0$, and hence
-$c_T(x) | P(x)(x^k+1)$. But $c_T$ is irreducible since $T$ generates an
+$c_T(x) | P(x)(x^k+1)$ ($c_T$ is the minimal polynomial of the sequence
+since it is irreducible). But $c_T$ is irreducible since $T$ generates an
 m-sequence, and $\deg P<L=\deg c_T$, so $c_T(x) | x^k+1$, which implies
 $k\ge 2^L-1$ (\cite{slides}, Slide 37), a contradiction. This concludes
 the proof of the lemma.
@@ -26,7 +27,7 @@ in an m-sequence consist of every non-zero $L$-vector. Since
 $\text{ker}(T^k+\mathbb{I})=\{0\}$, these vectors are permuted in this map.
 Specifically, there are $2^{L-1}-1$ vectors starting with $0$ and $2^{L-1}$ vectors
 starting with $1$ in the image of this map. However, $s_x$ and $s_{x+k}$
-agree iff $s_{x+k}\oplus s_x=1$, or iff $T^k{\bf s_x}+{\bf s_x}$ begins with
+disagree iff $s_{x+k}\oplus s_x=1$, or iff $T^k{\bf s_x}+{\bf s_x}$ begins with
 $1$, where ${\bf s_x}$ is the $L$-vector starting with $s_x$ in the m-sequence.
 However, the probability of $T^k{\bf s_x}+{\bf s_x}=(T^k+\mathbb{I}){\bf s_x}$
 starting with $1$ is approximately $1/2$, since $T^k+\mathbb{I}$ maps about half the non-zero
