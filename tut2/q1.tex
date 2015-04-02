@@ -69,10 +69,10 @@ which will be the fifth bit of the LFSR state after $s_t$ is outputted.}
 \item One characteristic polynomial would be $F(X) = X^5 + X^3 + 1$.
 
 \item If the first $L$ states $S_i$ of an LFSR of length $L$ are linearly
-dependent, then there exists $a_0, \dots, a_{L-1} \in \mathbb{Z}$ not all $0$
+dependent, then there exists $a_0, \dots, a_{L-1} \in \{0, 1\}$ not all $0$
 such that \[a_0 S_0 + a_1 S_1 + \dots + a_{L-2} S_{L-2} + a_{L-1} S_{L-1} = 0\].
-Let $j$ be the largest integer such that $0 \leq i < L-1$ and $a_j \neq 0$. Then
-\[a_0 S_0 + a_1 S_1 + \dots + a_{j-1} S_{j-1} = a_j S_j\].  This defines a LSFR
+Let $j$ be the largest integer such that $0 \leq j \leq L-1$ and $a_j \neq 0$. Then
+\[a_0 S_0 + a_1 S_1 + \dots + a_{j-1} S_{j-1} = a_j S_j\].  This defines a LFSR
 of length $j < L$ with the $i$th connection coefficient defined as \[c_i =
 \sum_0^i a_i\] which produces the same sequence as the LFSR of length $L$. 
 
