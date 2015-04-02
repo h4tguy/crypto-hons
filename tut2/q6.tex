@@ -1,0 +1,38 @@
+\ 
+% This seems to work.
+\paragraph{Better Solution: }
+Let the key be ${\bf k}= k_0k_1\dots k_{127}$.
+Note since $F$ has only $10$ inputs, it is possible to calculate a full truth
+table for $F$. Also note that there is a fixed linear transformation $L_m$ taking
+the vector ${\bf s_0}$ to the $m$-th input vector of $F$, ${\bf y_m}$. Our goal is to determine
+$128$ linear equations in $k_0,k_1,\dots,k_{127}$ and then Gauss reduce. For each
+bit of keystream, we determine $10$ such equations, so we expect to use $13$ bits
+of keystream (more if some of these equations turn out to be degenerate). 
+Switching a bit in the IV will switch a bit in some easily calculable
+subset of the entries in the input vector of $F$, since the input vector is a
+linear map of ${\bf s_0}$. Also, for a fixed IV and value $\alpha$
+of the $m$-th keystream bit, we know that the input vector of $F$ for this bit
+lies in $F^{-1}(\alpha)$, and, if the IV is ${\bf v}$, then $L_m{\bf k}$ lies in
+the set $F^{-1}(\alpha_v)-L_m{\bf v}$ (since ${\bf s_0} ={\bf k} \oplus {\bf v}$).
+By intersecting these sets over several IVs, we can determine a unique value of
+$L_m{\bf k}$, which gives $10$ linear equations in the $k_i$. Repeating for different
+values of $m$ will give a complete set of linear equations, which can then be solved
+for ${\bf k}$. In general, computing $L_m$ will take about $128^3$ steps (and this
+must be done about $128/10$ times), trying each
+initialization vector will take about $128^2$ steps, and intersecting the sets of
+possible values for $L_m{\bf k}$ will take about $2^{10}$ steps. Solving a set of
+$128$ linear equations will take about $128^3$ steps. The dominating factor is 
+$128^4/10 \approx 25\,000\,000 \ll 2^{128}$.
+(More generally, computing a $2^N$ bit key with an $M$-tap filter
+function will take about $\mathcal{O}(2^{4N}/M+2^{3N}+M(2^M+2^{2N}))$, which
+is exponentially better than the brute force $\mathcal{O}(2^{2^N})$.
+
+\paragraph{Our first stab at a solution. Simpler and slower:}
+Start by setting the IV to $00\dots 0$. Then the initial state $s_0s_1\dots s_{127}$
+is just the key. Now, note that there are 
+\[ \sum_{i=0}^{10} {128 \choose i} <2^{34}\] monomials in $s_0,s_1, \dots, s_{127}$
+which are linear in each variable and of total degree at most $10$. Running
+the filter generator for $2^{34}$ iterations will yield $2^{34}$ linear equations
+in these monomials. Gauss reduction on these equations will take approximately
+$(2^{34})^3 = 2^{102}$ steps. This will solve for $s_0,s_1,\dots, s_{127}$, which
+gives the key. This is an improvement by a factor of $2^{26}$ on the brute force.
