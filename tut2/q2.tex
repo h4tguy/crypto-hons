@@ -13,9 +13,8 @@ To check whether $\underline{s}$ is balanced, we just need to check whether the
 first bits of the members of $\mathbb{F}_2^L \setminus (0,\dots,0)$ (the states)
 are balanced. Clearly, there are $2^{L-1}$ states that start with 1 and
 $2^{L-1}-1$ states that start with 0 (since including $(0,\dots,0)$ as a state
-implies that it is the only state). Since the number of bits are odd and the
-zero state is not included, we would expect a balanced sequence to have one more
-1 than 0, which is what we have.
+implies that it is the only state). Thus, the number of 0s and 1s differ by one
+and therefore the sequence is balanced.
 
 \item A run of length $i$ occurs at a time $t$ if the state at $t-1$ starts with
 $i+2$ bits fixed (eg. $i$ 1s between two 0s or $i$ 0s between two 1s). There are
