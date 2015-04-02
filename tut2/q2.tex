@@ -4,18 +4,18 @@
 $L$, then it has period $2^L-1$ (as covered in lectures). This means that the
 LFSR goes through $2^L-1$ distinct states before repeating a state.
 Specifically, these states are the members of $\mathbb{F}_2^L \setminus
-(0,\dots,0)$. Also, the first bits of these states are the bits of the sequence
-in a single period.
+{(0,\dots,0)}$. Also, the first bits of these states are the bits of the
+sequence in a single period.
 
 To check whether $\underline{s}$ is balanced, we just need to check whether the
-first bits of the members of $\mathbb{F}_2^L \setminus (0,\dots,0)$ (the states)
-are balanced. Clearly, there are $2^{L-1}$ states that start with 1 and
+first bits of the members of $\mathbb{F}_2^L \setminus {(0,\dots,0)}$ (the
+states) are balanced. Clearly, there are $2^{L-1}$ states that start with 1 and
 $2^{L-1}-1$ states that start with 0 (since including $(0,\dots,0)$ as a state
 implies that it is the only state). Thus, the number of 0s and 1s differ by one
 and therefore the sequence is balanced.
 
 \item In a maximum length LFSR, the state of the LFSR register runs through all
-of the members of $\mathbb{F}_2^L \setminus (0,\dots,0)$ in a single period
+of the members of $\mathbb{F}_2^L \setminus {(0,\dots,0)}$ in a single period
 (\cite{slides}, Slide 36). A run of length $i$ occurs at a time $t$ with state
 $s_t$ if the preceding state $s_{t-1}$ (at time $t-1$) starts with a known
 substring of $i+2$ bits (eg. (0, 1, \dots, 1, 0) - 1 repeated $i$ times - or (1,
