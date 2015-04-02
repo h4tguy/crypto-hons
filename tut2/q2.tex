@@ -18,10 +18,11 @@ and therefore the sequence is balanced.
 of the members of $\mathbb{F}_2^L \setminus (0,\dots,0)$ in a single period
 (\cite{slides}, Slide 36). A run of length $i$ occurs at a time $t$ with state
 $s_t$ if the preceding state $s_{t-1}$ (at time $t-1$) starts with a known
-string of $i+2$ bits (eg. $i$ 1s between two 0s or $i$ 0s between two 1s). There
-are $2^{L-i-2}$ such states that precede the start of a run of i 0s or 1s.
-Accounting for both runs of 1s and of 0s, the total number of states that
-precede the start of any run is $2 \times 2^{L-i-2} = 2^{L-i-1}$.
+substring of $i+2$ bits (eg. (0, 1, \dots, 1, 0) - 1 repeated $i$ times - or (1,
+0, \dots, 0, 1) (0 repeated $i$ times)). There are $2^{L-i-2}$ such states that
+precede the start of a run of $i$ 0s or 1s. Accounting for both runs of ones and
+of zeros, the total number of states that precede the start of any run is $2
+\times 2^{L-i-2} = 2^{L-i-1}$.
 
 Any state that precedes the start of a run either starts with 01 or 10. This
 shows that approximately half of the states precede the start of a run: the half
