@@ -1,0 +1,29 @@
+Let's denote encryption of DES under key $k$ as $E_k$ and decryption under that key as
+$D_k$. Then this new cipher, which we will call double-DES, encrypts with \[C =
+E_{k_1}(E_{k_2}(P)) = 2DES_{k_1,k_2}(P)\]. We will attack this using a meet in the middle
+attack. 
+
+% TODO: I'm sure there's something I'm missing here. I'm leaving it in, but I'm sure this
+% isn't certain but instead stochastic.
+Let $C = 2DES_{k_1, k_2}(P)$. Since $E_k$ and $D_k$ are bijective for a fixed $k$, we know
+that there is always exactly one value $M$ such that \[M = E_{k_1}(P) = D_{k_2}(C)\].
+Therefore, if we can find all pairs $(k_e, k_d)$ such that \[E_{k_e}(P) = D_{k_d}(C)\], at
+least one of those pairs will be $(k_1, k_2)$. Therefore to break the key for double-DES,
+we can find all such pairs efficiently and determine whether they are the key. 
+
+Since this is a known plaintext attack, we first attain the ciphertexts $C_0, C_1$ for
+random plaintexts $P_0, P_1$ under a double-DES encryption under some unknown $k_1, k_2$.
+We then compute $E_{k_e}(P_0)$ for all 56 bit keys $k_e$ and store $k_e$ in a lookup-table
+$T$ with the key $E_{k_e}(P_0)$. Once we have this table, we compute $D_{k_d}(C_0)$ for a
+all possible keys $k_d$. For each key $k_d$, we lookup $D_{k_d}(C_0)$ in $T$. If
+$D_{k_d}(C_0)$ is in $T$, then we lookup its value, label it $k_e$ and store $(k_e, k_d)$
+to the list of candidate keys $L$. As shown above, this list $L$ will contain $(k_0,
+k_1)$.
+
+To determine which pair is are the keys for double-DES, we evaluate them against our
+second plaintext-ciphertext pair. For each pair $(k_e, k_d)$ in $L$ we compute \[X =
+2DES_{k_e, k_d}(P_1)\]. If $X = C_1$, then we've found $k_0 = k_e, k_1 = k_d$ and we're
+done and we stop computing. Otherwise we continue until we run out of candidate keys. 
+
+We will need $2^{56} + 2^{56} = 2^{57}$ encryptions and decryptions to build our lookup
+table and to find our list of candidate keys. We expect to need two known $(P,C)$ pairs. 
