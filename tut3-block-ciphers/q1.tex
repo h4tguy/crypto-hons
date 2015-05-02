@@ -1,0 +1,7 @@
+\begin{enumerate}
+    \item Let $C = E_k(P)$. The probability that for a random key $k_r$, $E_{k_r}(P) \neq C$ is $1-\frac{1}{2^{64}}$. Therefore the probability that there is no key besides $k$ that encrypts $P$ to $C$ is \[\left(1 - \frac{1}{2^{64}}\right)^{2^{52-1}}\]. Using the same Taylor Series trick we used in Hash Functions \cite{Slides_37}, we have that the probability that there is another key that encrypts $P$ to $C$ is
+    \[1 - \left(1 - \frac{1}{2^{64}}\right)^{2^{52-1}} \approx 1 - \left(1 - (1 + e^{-\frac{1}{2^{64}}})\right)^{2^{51}} = 1 - e^{-\frac{1}{2^{13}}} \approx 0.0001\].
+    \item As noted above, the probability that two keys $k_0, k_1$ don't encrypt a plaintext $P$ to the same ciphertext $C$ is $1 - \frac{1}{2^{64}}$. The probability that a random $k_3$ doesn't encrypt $P$ to the same $C$ as either $k_0$ or $k_1$ is $1 - \frac{2}{2^{64}}$. Note that this is exactly the same as the birthday paradox \cite{Slides_44} with an urn with $2^{64}$ balls and us picking $2^{52}$ of them. Therefore the probability that there are two keys that encrypt some
+    plaintext to the same ciphertext block is approximately \[1 - e^{-\frac{2^{2 \times 52}}{2 \times 2^{64}}} = 1 - e^{-\frac{2^{104}}{2^{65}}} \approx 1\]
+    \item The chance that a random key $k$ encrypts $P$ to $C$ is $\frac{1}{2^{64}}$. Since we have $2^{56}$ possible keys, the probability that at least one key encrypts $P$ to $C$ is \[\frac{2^{56}}{2^{64}} = \frac{1}{2^8} = \frac{1}{256}\]. Therefore we expect no keys to map $P$ to $C$. 
+\end{enumerate}
