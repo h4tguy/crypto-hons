@@ -1,0 +1,34 @@
+We describe a well-known distinguishing attack that uses 
+$\mathcal{O}(2^{n/2})$ blocks of bitstream. (\cite{dist}, p. 130)
+
+Let the ``blocks'' of the bitstream (the contiguous $n$-bit substrings
+that would be the output of successive iterations of the block cipher if
+the bitstream were an OFB mode keystream)
+be $z_1,\dots,z_i,\dots$. Note that
+if there are two indices $i<j$, such that $z_i=z_j$, then
+also 
+\begin{align*}
+	z_{i+1}=E_K(z_i)&=E_K(z_j)=z_{j+1} \\
+	z_{i+2}=E_K(z_{i+1})&=E_K(z_{j+1})=z_{j+2},
+\end{align*} and generally
+$z_{i+k}=z_{j+k}$ for any nonnegative integer $k$ (in fact any integer
+$k\ge-i$, using decryption to do induction in the negative direction).
+Thus, if we find two such indices $i,j$, and a nonnegative integer $k$,
+such that $z_i=z_j$, but $z_{i+k} \neq z_{j+k}$, then the sequence
+is certainly random, and we predict as such. On the other hand, if we
+find $i<j$ with $z_i=z_j$ and $z_{i+k}=z_{j+k}$ for even a few values of
+$k$, then the bitstream is almost certainly the output of a block cipher,
+since the probability that $z_{i+k}=z_{j+k}$ for two random 
+(independently-chosen) blocks
+$z_{i+k}$ and $z_{j+k}$ is $1/2^n$. We thus classify the bitstream as
+the output of a block cipher in this case.
+
+The only remaining case is that no such $i,j$ are found. We choose
+a large enough sample of the bitstream so that this would be unlikely
+if the bitstream were random ($\mathcal{O}(2^{n/2})$ blocks, by the
+	birthday paradox). Therefore if no such $i,j$ exist, we can be
+	reasonably certain the bitstream is the output of a block cipher, and
+	classify it as such.
+	We can increase the accuracy of our algorithm by sampling a larger
+	substring of the bitstream, increasing the probability that a random
+	bitstream would contain two equal blocks.
