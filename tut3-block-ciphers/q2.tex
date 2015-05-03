@@ -1,0 +1,27 @@
+Let's denote encryption of DES under key $k$ as $E_k$ and decryption under that key as
+$D_k$. Then this new cipher, which we will call double-DES, encrypts with \[C =
+E_{k_1}(E_{k_0}(P)) = 2DES_{k_0,k_1}(P)\] We will attack 2DES using a meet in the middle
+attack. 
+
+Let $C = 2DES_{k_0, k_1}(P)$. Since $E_k$ and $D_k$ are inverses for a fixed $k$, we know
+that there is always exactly one value $M$ such that $M = E_{k_0}(P) = D_{k_1}(C)$.
+Therefore, if we can find all pairs $(k_d, k_e)$ such that $E_{k_e}(P) = D_{k_d}(C)$, at
+least one of those pairs will be $(k_0, k_1)$. Thus to break the key for double-DES,
+we can find all such pairs efficiently and determine whether they are the key. 
+
+Since this is a known plaintext attack, we first generate the ciphertexts $C_0, C_1$ for
+random plaintexts $P_0, P_1$ under a double-DES encryption under some unknown $k_0, k_1$.
+We then compute $E_{k_e}(P_0)$ for every 56 bit key $k_e$ and store $k_e$ in a lookup-table
+$T$ with the key $E_{k_e}(P_0)$. Once we have this table, we compute $D_{k_d}(C_0)$ for a
+all possible keys $k_d$. For each key $k_d$, we lookup $D_{k_d}(C_0)$ in $T$. If
+$D_{k_d}(C_0)$ is in $T$, then we lookup its value, label it $k_e$ and store $(k_d, k_e)$
+in the list of candidate keys $L$. At the end of this process, $L$ will contain $(k_0, k_1)$ as shown above.
+
+To determine which pair is the key pair for double-DES, we evaluate them against our
+second plaintext-ciphertext pair $(P_1, C_1)$. For each pair $(k_d, k_e)$ in $L$ we compute \[X =
+2DES_{k_e, k_d}(P_1)\] If $X = C_1$, then that candidate pair is still valid and we keep it in our list $L$. Otherwise we remove it from $L$. If there's only one pair $(k_d, k_e)$ in $L$, then we have determined that $k_0 = k_d, k_1 = k_e$ and we're
+done. Otherwise we repeat this process with a new plaintext-ciphertext pair until $L$ is empty.
+
+We will need approximately $2^{56} + 2^{56} = 2^{57}$ encryptions and decryptions to build our lookup
+table and to find our list of candidate keys. From the same reasoning used in 1(c), we expect to have approximately \[\frac{2^{112}}{2^{64}} = 2^{48}\] key pairs $(k_d, k_e)$ that decrypt a given ciphertext $C_0$ to plaintext $P_0$. This is simply the same calculation as done in 1(c) but with 2DES, a cipher with a $112$ bit key rather than DES, which has a $56$ bit key. Since this method is exhaustive, we expect that we will find all such pairs. Repeating this logic again, the chance that there will be more than $1$ key of the expected $2^{48}$ keys that will encrypt $P_1$ to $C_1$ is \[\frac{2^{48}}{2^{64}} = 2^{-16} << 0.5\] Therefore we expect that we
+will only need to test our candidate keys against one pair $(P_1, C_1)$, requiring approximately $2^{49}$ encryptions and decryptions together to do so. Therefore, in total, we expect we'll need approximately $2^{57} + 2^{49}$ encryptions and decryptions and two plaintext-ciphertext pairs to conduct this attack. 
