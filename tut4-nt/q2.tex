@@ -1,14 +1,48 @@
 \begin{enumerate}
 
-\item First note that the prime factorization of $4725$ is $3^{3} \cdot 5^{2} \cdot 7$.
-Therefore:
-% \prod
-\begin{eqnarray*}
-    \phi(4725) &=& \phi(3^{3} \cdot 5^{2} \cdot 7) \\
-    &=& \phi(3^{3}) \cdot \phi(5^{2}) \cdot \phi(7) \\
-    &=& (3^{3-1} \cdot (3 - 1)) \cdot (5^{2-1} \cdot (5 - 1)) \cdot (7 - 1) \\
-    &=& 2520
-\end{eqnarray*}
-% \phi
+    \item First note that the prime factorization of $4725$ is $3^{3} \cdot 5^{2} \cdot 7$.
+    Therefore:
+    \begin{eqnarray*}
+        \phi(4725) &=& \phi(3^{3} \cdot 5^{2} \cdot 7) \\
+        &=& \phi(3^{3}) \cdot \phi(5^{2}) \cdot \phi(7) \\
+        &=& (3^{3-1} \cdot (3 - 1)) \cdot (5^{2-1} \cdot (5 - 1)) \cdot (7 - 1) \\
+        &=& 2520
+    \end{eqnarray*}
+
+    \item First note that:
+    \begin{eqnarray*}
+        2^{2163} &=& 2^{2^{11} + 2^{6} + 2^{5} + 2^{4} + 2^{1} + 2^{0}} \\
+        &=& 2^{2^{11}} \cdot 2^{2^{6}} \cdot 2^{2^{5}} \cdot 2^{2^{4}} \cdot 
+        2^{2^{1}} \cdot 2^{2^{0}}
+    \end{eqnarray*}
+    From this we can calculate the repeated squares of $2^{2}$:
+    \begin{center}
+        $2^{2^{0}} \equiv 2$ (mod 4752), \\
+        $2^{2^{1}} \equiv 4$ (mod 4752), \\
+        $2^{2^{2}} \equiv 16$ (mod 4752), \\
+        $2^{2^{3}} \equiv 256$ (mod 4752), \\
+        $2^{2^{4}} \equiv 4111$ (mod 4752), \\
+        $2^{2^{5}} \equiv 3721$ (mod 4752), \\
+        $2^{2^{6}} \equiv 1591$ (mod 4752), \\
+        $2^{2^{7}} \equiv 3406$ (mod 4752), \\
+        $2^{2^{8}} \equiv 961$ (mod 4752), \\
+        $2^{2^{9}} \equiv 2146$ (mod 4752), \\
+        $2^{2^{10}} \equiv 3166$ (mod 4752), \\
+        $2^{2^{11}} \equiv 1831$ (mod 4752)
+    \end{center}
+    Therefore:
+    \begin{eqnarray*}
+        2^{2163} \mod 4725 &=& 2^{2^{0}} \cdot 2^{2^{1}} \cdot 2^{2^{4}} \cdot 
+        2^{2^{5}} \cdot 2^{2^{6}} \cdot 2^{2^{11}} \mod 4725 \\
+        &=& 2 \cdot 4 \cdot 4111 \cdot 3721 \cdot 1591 \cdot 1831 \mod 4725 \\
+        &=& 8
+    \end{eqnarray*}
+
+    \item
+
+    \item
+
+    \item
+    
 
 \end{enumerate}
