@@ -10,7 +10,7 @@ least one of those pairs will be $(k_0, k_1)$. Thus to break the key for double-
 we can find all such pairs efficiently and determine whether they are the key. 
 
 Since this is a known plaintext attack, we first generate the ciphertexts $C_0, C_1$ for
-random plaintexts $P_0, P_1$ under a double-DES encryption under some unknown $k_1, k_2$.
+random plaintexts $P_0, P_1$ under a double-DES encryption under some unknown $k_0, k_1$.
 We then compute $E_{k_e}(P_0)$ for every 56 bit key $k_e$ and store $k_e$ in a lookup-table
 $T$ with the key $E_{k_e}(P_0)$. Once we have this table, we compute $D_{k_d}(C_0)$ for a
 all possible keys $k_d$. For each key $k_d$, we lookup $D_{k_d}(C_0)$ in $T$. If
