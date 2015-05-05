@@ -1,0 +1,95 @@
+\begin{enumerate}
+
+    \item First note that the prime factorization of $4725$ is $3^{3} \cdot 5^{2} \cdot 7$.
+    Therefore:
+    \begin{eqnarray*}
+        \phi(4725) &=& \phi(3^{3} \cdot 5^{2} \cdot 7) \\
+        &=& \phi(3^{3}) \cdot \phi(5^{2}) \cdot \phi(7) \\
+        &=& (3^{3-1} \cdot (3 - 1)) \cdot (5^{2-1} \cdot (5 - 1)) \cdot (7 - 1) \\
+        &=& 2160
+    \end{eqnarray*}
+
+    % THIS WAS SO MUCH EFFORT SO ITS STAYING HERE FOREVER AND EVER AND EVER
+    % \item First note that:
+    % \begin{eqnarray*}
+    %     2^{2163} &=& 2^{2^{11} + 2^{6} + 2^{5} + 2^{4} + 2^{1} + 2^{0}} \\
+    %     &=& 2^{2^{11}} \cdot 2^{2^{6}} \cdot 2^{2^{5}} \cdot 2^{2^{4}} \cdot 
+    %     2^{2^{1}} \cdot 2^{2^{0}}
+    % \end{eqnarray*}
+    % From this we can calculate the repeated squares of $2^{2}$:
+    % \begin{center}
+    %     $2^{2^{0}} \equiv 2$ (mod 4752), \\
+    %     $2^{2^{1}} \equiv 4$ (mod 4752), \\
+    %     $2^{2^{2}} \equiv 16$ (mod 4752), \\
+    %     $2^{2^{3}} \equiv 256$ (mod 4752), \\
+    %     $2^{2^{4}} \equiv 4111$ (mod 4752), \\
+    %     $2^{2^{5}} \equiv 3721$ (mod 4752), \\
+    %     $2^{2^{6}} \equiv 1591$ (mod 4752), \\
+    %     $2^{2^{7}} \equiv 3406$ (mod 4752), \\
+    %     $2^{2^{8}} \equiv 961$ (mod 4752), \\
+    %     $2^{2^{9}} \equiv 2146$ (mod 4752), \\
+    %     $2^{2^{10}} \equiv 3166$ (mod 4752), \\
+    %     $2^{2^{11}} \equiv 1831$ (mod 4752)
+    % \end{center}
+    % Therefore:
+    % \begin{eqnarray*}
+    %     2^{2163} \mod 4725 &=& 2^{2^{0}} \cdot 2^{2^{1}} \cdot 2^{2^{4}} \cdot 
+    %     2^{2^{5}} \cdot 2^{2^{6}} \cdot 2^{2^{11}} \mod 4725 \\
+    %     &=& 2 \cdot 4 \cdot 4111 \cdot 3721 \cdot 1591 \cdot 1831 \mod 4725 \\
+    %     &=& 8
+    % \end{eqnarray*}
+    % THIS WAS SO MUCH EFFORT SO ITS STAYING HERE FOREVER AND EVER AND EVER
+
+    \item Note that gcd(4725, 2) = 1 and therefore $2 \in \mathbb{Z}^{*}_{4725}$. By Euler's Theorem we now 
+    have that $2^{\phi(4725)} \equiv 1 (\mod 4725)$ and from the previous question we know that $\phi(4725) = 2160$.
+    Therefore:
+    \begin{eqnarray*}
+        2^{2163} \mod 4725 &=& 2^{2160} \cdot 2^{3} \mod 4725 \\
+        &=& 1 \cdot 2^{3} \mod 4725 \\
+        &=& 8
+    \end{eqnarray*}
+
+    \item If $a \in \mathbb{Z}_{n}\mathbb\diagdown{Z}^{*}_{n}$ then a has no multiplicative 
+    inverse. Therefore Euler's Equation cannot hold for $\mathbb{Z}_{n}\mathbb\diagdown{Z}^{*}_{n}$ 
+    as $a \cdot a^{\phi(n-1)} \equiv 1 (\mod n)$ implies that $a^{\phi(n-1)}$ is the inverse of a, 
+    which is a contradiction.
+
+    \item In order to use Euler's Theorem we must know that $\phi(47) = 46$, as 
+    47 is prime this is trivial. Now note that by Euler's Theorem for any $a \in
+     \mathbb{Z}^{*}_{47}$,\\ $a^{46} \equiv 1 (mod\ 47)$. Therefore:
+    \begin{eqnarray*}
+        27^{-1} \mod 47 &=& 27^{-1} \cdot 27^{46} \mod 47 \\
+        &=& 27^{45}
+    \end{eqnarray*}
+
+    Now $27^{45} \mod 47$ can be sovled using the repeated-squaring algorithm: \\
+    Find the power of 2 representation of the exponent:
+    \begin{center}
+        $45 = 2^{0} + 2^{2} + 2^{3} + 2^{5}$
+    \end{center}
+
+    Calculate the repeated squares of 27:
+    \begin{center}
+        $27^{2^{0}} \equiv 27$ (mod 47), \\
+        $27^{2^{1}} \equiv 24$ (mod 47), \\
+        $27^{2^{2}} \equiv 12$ (mod 47), \\
+        $27^{2^{3}} \equiv 3$ (mod 47), \\
+        $27^{2^{4}} \equiv 9$ (mod 47), \\
+        $27^{2^{5}} \equiv 34$ (mod 47)
+    \end{center}
+
+    Finally solve for $27^{-1} = 27^{45}$:
+    \begin{eqnarray*}
+        27^{45} \mod 47 &=& 27^{2^{0}} \cdot 27^{2^{2}} \cdot 27^{2^{3}} \cdot 27^{2^{5}} \mod 47 \\
+        &=& 27 \cdot 12 \cdot 3 \cdot 34 \mod 47 \\
+        &=& 7
+    \end{eqnarray*}
+
+    \item The order of $\mathbb{Z}^{*}_{29}$ is 28, which factos into $2^{2} \cdot 7$. Evaluating the following determines if 3 is a generator:
+    \begin{eqnarray*}
+        3^{\frac{28}{2}} \mod 29 = 3^{8} \cdot 3^{4} \cdot 3^{2} \mod 29 = -1 \mod 29 \not\equiv 1 \mod 29 \\
+        3^{\frac{28}{7}} \mod 29 = 3^{4} \mod 29 = 23 \mod 29 \not\equiv 1 \mod 29
+    \end{eqnarray*}
+    Therefore by the theorem stated in the slides\cite{Slides_70} 3 is a generator of $\mathbb{Z}^{*}_{29}$.
+
+\end{enumerate}

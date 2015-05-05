@@ -1,6 +1,19 @@
 \begin{enumerate}
 
-\item
+\item First find $27^{-1} \in \mathbb{Z}_{47}$. In order to do this we need $gcd(27,47)$:
+\begin{eqnarray*}
+    gcd(27,47) &=& gcd(20,27) \\
+    &=& gcd(7,20) \\
+    &=& gcd(6,7) \\
+    &=& gcd(1,6) \\
+    &=& 1
+\end{eqnarray*}
+Now with the Extended division algorithm we have that:
+\begin{eqnarray*}
+    gcd(27,47) = 1 = 7 \cdot 27 - 4 \cdot 47
+\end{eqnarray*}
+Therefore the inverse of $27$ in $\mathbb{Z}_{47}$ is $7$.
+Thus $27^{-1}$ mod $47 = 7$ mod $47 = 7$
 
 \item Note that $135x \equiv 15 \textrm{ mod } 235 \iff 27x \equiv 3
 \textrm{ mod } 47$ \cite{slides_30}.\\
