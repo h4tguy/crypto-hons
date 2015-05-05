@@ -1,0 +1,19 @@
+The number given, which we will call $N$, can be written as
+$$\sum_{i=1}^{44} i10^{a_i}+81,$$
+where the $a_i$ are positive integers.
+However, if $k$ is a positive integer, then $10^k \equiv_9 1^k \equiv_9 1$,
+so
+\begin{align*}
+	N = \sum_{i=1}^{44} i10^{a_i}+81 &\equiv_9 \sum_{i=1}^{44} i +81\\
+																 &\equiv_9 \frac{44\cdot45}{2} +81 \\
+	&\equiv_9 22 \cdot 45 +81 \\
+	&\equiv_9 110 \cdot 9 + 9 \cdot 9 \\
+	&\equiv_9 0.
+\end{align*}
+Also, a number is congruent to its last digit modulo $10$, so 
+$N \equiv_{10} 1$, and then also $N \equiv_5 1$.
+
+We thus have $N \equiv_9 0$ and $N \equiv_5 1$. It is also true that $36 \equiv_9 0$ and
+$36 \equiv_5 1$, and by Chinese Remainder Theorem this number is unique
+modulo $5 \cdot 9=45$, so $N \equiv_{45} 36$. So $N$ leaves a remainder of
+$36$ on division by $45$.
