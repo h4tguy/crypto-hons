@@ -13,6 +13,18 @@ Now with the Extended division algorithm we have that:
     gcd(27,47) = 1 = 7 \cdot 27 - 4 \cdot 47
 \end{eqnarray*}
 Therefore the inverse of $27$ in $\mathbb{Z}_{47}$ is $7$.
-Thus $27^{-1}$ mod $47 = 7$ mod $47 = 7$ 
+Thus $27^{-1}$ mod $47 = 7$ mod $47 = 7$
+
+\item Note that $135x \equiv 15 \textrm{ mod } 235 \iff 27x \equiv 3
+\textrm{ mod } 47$ \cite{slides_30}.\\
+
+Now, \begin{eqnarray*}
+	&& 27x = 3 + 47n \textrm{ } (\forall n \in \mathbb{Z}) \\
+	&\implies& x = 27^{-1} \cdot 3 + 47n \\
+	&\implies& x \equiv 21 \textrm{ } (\textrm{mod } 47) \\
+\end{eqnarray*}
+
+So the solutions of $135x \equiv 15 \textrm{ mod } 235$ are the integers of the
+form $21 + 47k \textrm{, } \forall k \in \mathbb{Z}$.
 
 \end{enumerate}

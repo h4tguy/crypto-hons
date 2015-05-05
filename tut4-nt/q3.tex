@@ -1,0 +1,58 @@
+\begin{enumerate}
+
+\item Note that 24 is a quadratic residue mod 55 if and only if 24 is a
+quadratic residue both mod 11 and mod 5 \cite{slides_99}.
+
+However, $24 \equiv 2 \textrm{ mod } 11$ and
+$2^{(11-1)/2} \equiv 10 \textrm{ mod } 11$, so by Euler's criterion, 24 is not
+a quadratic residue mod 55.
+
+\item Note that $11 \equiv 3 \textrm{ mod } 4$, so the square roots of 3 are
+given by \cite{slides_92}
+\begin{eqnarray*}
+&& \pm 3^{(11+1)/4} \textrm{ mod } 11 \\
+&=& \pm 27 \textrm{ mod } 11 \\
+&=& \pm 5 \textrm{ mod } 11 \\
+\end{eqnarray*}
+
+So the square roots of $3$ mod $11$ are the integers of the form $5 + 11k$ and
+$-5 + 11k$, $\forall k \in \mathbb{Z}$.
+
+\item Assuming that $14$ has square roots modulo $55$, and given that
+$55 = 5 \cdot 11$ and $14$ is coprime to $55$, we know that $14$ must have $4$
+square roots of the form
+\begin{eqnarray*}
+&& \pm b(11^{-1} \textrm{ mod } 5)11 \pm c(5^{-1} \textrm{ mod } 11)5
+\textrm{ mod } 55 \\
+&=& \pm b(1)11 \pm c(9)5 \textrm{ mod } 55 \\
+&=& \pm 11b \pm 45c \textrm{ mod } 55
+\end{eqnarray*}
+where $b$ and $c$ are the square roots of $14$ modulo $5$ and $11$ respectively.
+\cite{slides_100}
+
+The square roots of $14$ modulo $5$ are congruent to the square roots of $4$
+modulo $5$, which are $\pm 3 \textrm{ mod } 5$, by inspection.
+
+The square roots of $14$ modulo $11$ are congruent to the square roots of $3$
+modulo $11$, which were found to be $\pm 5 \textrm{ mod } 11$ in the previous
+question.
+
+So the square roots of $14 \textrm{ mod } 55$ are
+\begin{eqnarray*}
+&& \pm 11 \cdot 3 \pm 45 \cdot 5 \textrm{ mod } 55 \\
+&=& \pm 33 \pm 225 \textrm{ mod } 55 \\
+&\equiv& \pm 33 \pm 5 \textrm{ mod } 55 \\
+\end{eqnarray*}
+
+And $-33 = 22 \textrm{ mod } 55$, so the square roots are $38, 28, 27$ and
+$17$.
+
+\item Since $2$ is given as a generator of $\mathbb{Z}_{11}^{*}$, we know that
+all of the even powers of $2$ are going to be the quadratic residues modulo
+$11$, and all of the odd powers of $2$ are going to be the quadratic nonresidues
+modulo $11$. It follows that $x$ is even if and only if $7$ is a quadratic
+residue modulo $11$. Applying Euler's criterion, we find that $7^5 \equiv 10
+\textrm{ mod } 11$, so $7$ is not a quadratic residue and therefore $x$ must be
+odd.
+
+\end{enumerate}
