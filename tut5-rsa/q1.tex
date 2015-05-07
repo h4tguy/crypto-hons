@@ -1,5 +1,14 @@
 \begin{enumerate}
-\item
+\item Alice's public key is $(n,e)=(pq,e)=(437,13)$. Her private key is
+$d$, the inverse of $e$ modulo $\phi(n)=(p-1)(q-1)=396$. But
+\begin{align*}
+	396 &= 1 \cdot 396 + 0 \cdot 13 \\
+	13 &= 0 \cdot 396 +1 \cdot 13 \\
+	6 &=  1 \cdot 396 - 30 \cdot 13 \\
+	1 &= -2 \cdot 396 + 61 \cdot 13
+\end{align*}
+(where $396=30\cdot 13 + 6$ and $13=2 \cdot 6 + 1$). It hence
+follows that $61 \cdot 13 \equiv_{396} 1$, so Alice's private key is $d=61$.
 
 \item
 
