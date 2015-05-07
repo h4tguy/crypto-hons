@@ -10,12 +10,73 @@ $d$, the inverse of $e$ modulo $\phi(n)=(p-1)(q-1)=396$. But
 (where $396=30\cdot 13 + 6$ and $13=2 \cdot 6 + 1$). It hence
 follows that $61 \cdot 13 \equiv_{396} 1$, so Alice's private key is $d=61$.
 
-\item
+\item Alice must compute $H(M)^d$ mod  $n$, which is $6^{61}$ mod $437$.
+Now $61=2^5+2^4+2^3+2^2+2^0$. Also, since $6^{2^k} \equiv_{437} \left(6^{2^{k-1}}\right)^2$,
+\begin{align*}
+	6^{2^0} &\equiv_{437} 6 \\
+	6^{2^1} &\equiv_{437} 36 \\
+	6^{2^2} &\equiv_{437} 422 \\
+	6^{2^3} &\equiv_{437} 225 \\
+	6^{2^4} &\equiv_{437} 370 \\
+	6^{2^5} &\equiv_{437} 119
+\end{align*}
+And so Alice's signature is 
+\begin{align*}
+S=6^{61}&\equiv_{437}6^{32} \cdot 6^{16} \cdot 6^8 \cdot 6^4 \cdot 6^1 \\
+&\equiv_{437} 119 \cdot 370 \cdot 225 \cdot 225 \cdot 422 \cdot 6 \\
+&\equiv_{437} 104
+\end{align*}
+(which she publishes).
 
-\item
+\begin{figure}
+\caption{Square and multiply code}
+\lstinputlisting[language=Python]{square_and_multiply.py}
+\end{figure}
 
-\item
+\item Bob may not know $d$, but he knows that $H(M)^{d'e} \equiv_{n} H(M)$
+iff $\text{ord}_{n} H(M)|d'e-1$. Since $\phi(n)$ is typically large,
+an attacker cannot efficiently find a $d'$ for which this is the case.
+Since Alice's $d$ satisfies this property (since $\text{ord}_{n} H(M) |\phi(n)$),
+Bob can compute $S^e \equiv_n H(M)^{de}$, which will be $H(M)$ mod $n$ iff
+the signature is valid.
 
-\item
+\item We need to compute $6^{61}$ mod $437$. We start by computing mod $19$.
+$61 \equiv_{18} 7$ (where $18=\phi(19)=19-1$ since $19$ is prime). So we only
+need to compute 
+\begin{align*}
+6^7 &\equiv_{19} 6^1 \cdot 6^2 \cdot 6^4 \\
+	&\equiv_{19} 6 \cdot 17 \cdot 4 \\
+	&\equiv_{19} 9.
+\end{align*}
+We do the same modulo $23$, noting $61 \equiv_{22} 17$.
+\begin{align*}
+6^{15} &\equiv_{23} 6^1 \cdot 6^{16} \\
+ &\equiv_{23} 6 \cdot 2 \\
+ &\equiv_{23} 12
+\end{align*}
+So, using Chinese Remainder Theorem, $6^{61}$ is the unique residue modulo $437$
+which is congruent to $9$ mod $19$ and $12$ mod $23$. But this is just
+$12 \cdot 19 \cdot a + 9 \cdot 23 \cdot b$ where $a$ is the inverse of $19$
+mod $23$ and $b$ is the inverse of $23$ mod $19$. We use the Extended Euclidean
+Algorithm to compute these
+\begin{align*}
+23 &= 1 \cdot 23 + 0 \cdot 19 \\
+19 &= 0 \cdot 23 + 1 \cdot 19 \\
+4 &= 1 \cdot 23 - 1 \cdot 19 \\
+3 &= -4 \cdot 23 + 5 \cdot 19 \\
+1 &= 5 \cdot 23 - 6 \cdot 19
+\end{align*}
+and so $a=-6$, $b=5$.
+So then $6^{61} \equiv_{437} 12 \cdot 19 \cdot (-6) + 9 \cdot 23 \cdot 5 \equiv_{437} 104$
+as expected.
+
+\item In this case, the Chinese Remainder Theorem yields the bad signature
+$S'\equiv_{437} 12 \cdot 19 \cdot (-6) + 73 \cdot 23 \cdot 5 \equiv_{437} 35$.
+
+Bob will realise that $$(S')^e \equiv_{437} 35^{13} \equiv_{437} 328 \not\equiv_{437} 6 \equiv_{437} H(M)$$
+If he guesses that one of the exponentiations in $\mathbb{Z}_p$ or $\mathbb{Z}_q$ was incorrect, but
+the other was correct, wlog $(S')^e \equiv_q H(M)$, so $q=\text{gcd}(n,H(M)-(S')^e)$
+(since $n$ does not divide $H(M)-(S')^e$. Indeed, in this case $H(M)-(S')^e \equiv_{437} 115$
+and $\text{gcd}(115,437)=23$ yields a prime factor of $n$.
 
 \end{enumerate}
