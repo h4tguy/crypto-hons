@@ -1,9 +1,75 @@
 \begin{enumerate}
+  %\setlength{\tabcolsep}{2pt}
+
+  \item We are using this polynomial in s:
+    \begin{eqnarray*}
+      Q(s) = (\lfloor{\sqrt{kn}} \rfloor +s)^2 - kn
+    \end{eqnarray*}
+    Given that $n = 1643$:
+    \begin{eqnarray*}
+      Q(s) &=& (\lfloor{\sqrt{k \cdot 1643}} \rfloor + s)^2 - k \cdot 1643 \\
+    \end{eqnarray*}
+    The table gives that $Q(0) = -115$, so we find that $k = 5$:
+    \begin{eqnarray*}
+     Q(s) &=& (\lfloor{\sqrt{5 \cdot 1643}} \rfloor + s)^2 - 5 \cdot 1643 \\
+     Q(0) &=& (\lfloor{\sqrt{5 \cdot 1643}} \rfloor + 0)^2 - 5 \cdot 1643 \\
+          &=& 90^2 - 8215\\
+          &=& -115
+    \end{eqnarray*}
 
 \item
+  \begin{eqnarray*}
+    \adjustbox{max width=\textwidth}{
+    \begin{tabular}{@{} cccccccccccccc @{}}
+      \toprule
+      s & -6 & -5 & -4 & -3 & -2 & -1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+      Q(s) & -1159 & -990 & -819 & -646 & -471 & -294 & -115 & 66 & 249 & 434 &
+      621 & 810 & 1001 \\
+      \midrule
+      Sieve with 2 & & -495 & & -323 & & -147 & & 33 & & 217 & & 405 & \\
+      Sieve with 3 & & -55 & -91 & & -157 & -49 & & 11 & 83 & & 23 & 5 & \\
+      Sieve with 5 & & 11 & & & & & -23 & & & & & 1 & \\
+      Sieve with 7 & & & -13 & & & -1 & & & & 31 & & & 143 \\
+      Sieve with 11 & & -1 & & & & & &1& & & & & 13 \\
+      Sieve with 13 & & & -1 & & & & & & & & & & 1 \\
+      \bottomrule
+    \end{tabular}}
+  \end{eqnarray*}
 
-\item
+\item Given the result of the sieve, we have the following system of relations:
+  \begin{eqnarray*}
+    &85^2& \equiv -990 \equiv -1 \cdot 2 \cdot 3^2 \cdot 5 \cdot 11
+    \textrm{ mod } 1643 \\
+    &86^2& \equiv -819 \equiv -1 \cdot 3^2 \cdot 7 \cdot 13
+    \textrm{ mod } 1643 \\
+    &89^2& \equiv -294 \equiv -1 \cdot 2 \cdot 3 \cdot 7^2
+    \textrm{ mod } 1643 \\
+    &91^2& \equiv 66 \equiv 2 \cdot 3 \cdot 11
+    \textrm{ mod } 1643 \\
+    &95^2& \equiv 810 \equiv 2 \cdot 3^4 \cdot 5
+    \textrm{ mod } 1643 \\
+    &96^2& \equiv 1001 \equiv 7 \cdot 11 \cdot 13
+    \textrm{ mod } 1643 \\
+  \end{eqnarray*}
 
-\item
+  Then the exponent vectors $v_1 \dots v_6$ are:
+  \begin{eqnarray*}
+    v_1 = (1, 1, 0, 1, 0, 1, 0) \\
+    v_2 = (1, 0, 0, 0, 1, 0, 1) \\
+    v_3 = (1, 1, 1, 0, 0, 0, 0) \\
+    v_4 = (0, 1, 1, 0, 0, 1, 0) \\
+    v_5 = (0, 1, 0, 1, 0, 0, 0) \\
+    v_6 = (0, 0, 0, 0, 1, 1, 1) \\
+  \end{eqnarray*}
+
+  Note that $v_1 + v_3 + v_4 + v_5 = \underline{0}$, so multiplying the
+  corresponding congruences gives:
+  \begin{eqnarray*}
+    (85 \cdot 89 \cdot 91 \cdot 95)^2 &\equiv& (-1 \cdot 2^2 \cdot 3^4 \cdot 5
+    \cdot 7 \cdot 11 \cdot 13)^2 \textrm{ mod } 1643 \\
+    1453^2 &\equiv& 1515^2 \textrm{ mod } 1643 \\
+  \end{eqnarray*}
+
+  So we have gcd$(1515-1453, 1643) = \textrm{gcd}(62, 1643) = 31$, and so $1643$ factorises into $31$ and $53$.
 
 \end{enumerate}
