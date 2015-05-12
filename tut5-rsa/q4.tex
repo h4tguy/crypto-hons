@@ -1,0 +1,20 @@
+Let $g=f\circ f$. We then iteratively compute (in $\mathbb{Z}_n$):
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+$k$ &$f^k(3)$ &$g^k(3)$ & $\text{gcd}(f^k(3)-g^k(3),n)$\\
+\hline
+$1$ & $10$ & $101$ & $1$ \\
+$2$ & $101$ & $124$ & $23$ \\
+\hline
+\end{tabular}
+
+So $23|n$. We see that $23$ is prime, and hence 
+$391=23 \cdot \left( \frac{391}{23}\right)=23\cdot 17$.
+$17$ is also prime, so $17\cdot 23$ is the prime factorisation
+of $391$.
+
+\begin{figure}[h]
+\caption{Source Code for Q4}
+\lstinputlisting[language=Python]{pollardrho.py}
+\end{figure}
