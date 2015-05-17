@@ -1,0 +1,64 @@
+Let's divide $\mathbb{Z}_{83}$ into three subsets: $G_1 = \{0, \dots, 27\}, G_2 = \{28, \dots, 55\}, G_3 = \{56, \dots, 82\}$. Since $b_1 = 33$, $u_1 \equiv 2^{33} \equiv 71 \mod 83$. Using these values, we can execute Pollard's Rho algoritm, these calculations are captured in Table \ref{tab:rho}.
+
+As we can see in Table \ref{tab:rho}, lines $i=22$ and $i=44$, $2^{45} \cdot 58^3 \equiv 2^{62} \cdot 58^8 \mod 83$. Therefore 
+
+\[2^{45-62} \equiv 2^{-17} \equiv (2^x)^5 \equiv 58^5 \equiv 58^{8-3} \mod 83.\]
+
+Equating the exponents we have that $-17 \equiv 65 \equiv 5x \mod 82$. As $5$ is coprime to $82$ we can simplify this to $x \equiv 13 \mod 82$. Therefore $2^{13} \equiv 58 \mod 83$.
+
+\begin{table}[P]
+\begin{tabular}{l l l l}
+i & $u_i \mod 83$ & $b_i$ & $c_i$ \\\hline
+1 & 5 & 27 & 0 \\\hline
+2 & 10 & 28 & 0 \\\hline
+3 & 20 & 29 & 0 \\\hline
+4 & 40 & 30 & 0 \\\hline
+5 & 80 & 31 & 0 \\\hline
+6 & 75 & 31 & 1 \\\hline
+7 & 34 & 31 & 2 \\\hline
+8 & 68 & 32 & 2 \\\hline
+9 & 43 & 32 & 3 \\\hline
+10 & 3 & 33 & 3 \\\hline
+11 & 6 & 34 & 3 \\\hline
+12 & 12 & 35 & 3 \\\hline
+13 & 24 & 36 & 3 \\\hline
+14 & 48 & 37 & 3 \\\hline
+15 & 13 & 38 & 3 \\\hline
+16 & 26 & 39 & 3 \\\hline
+17 & 52 & 40 & 3 \\\hline
+18 & 21 & 41 & 3 \\\hline
+19 & 42 & 42 & 3 \\\hline
+20 & 1 & 43 & 3 \\\hline
+21 & 2 & 44 & 3 \\\hline
+22 & 4 & 45 & 3 \\\hline
+23 & 8 & 46 & 3 \\\hline
+24 & 16 & 47 & 3 \\\hline
+25 & 32 & 48 & 3 \\\hline
+26 & 64 & 49 & 3 \\\hline
+27 & 60 & 49 & 4 \\\hline
+28 & 77 & 49 & 5 \\\hline
+29 & 67 & 49 & 6 \\\hline
+30 & 68 & 49 & 7 \\\hline
+31 & 43 & 49 & 8 \\\hline
+32 & 3 & 50 & 8 \\\hline
+33 & 6 & 51 & 8 \\\hline
+34 & 12 & 52 & 8 \\\hline
+35 & 24 & 53 & 8 \\\hline
+36 & 48 & 54 & 8 \\\hline
+37 & 13 & 55 & 8 \\\hline
+38 & 26 & 56 & 8 \\\hline
+39 & 52 & 57 & 8 \\\hline
+40 & 21 & 58 & 8 \\\hline
+41 & 42 & 59 & 8 \\\hline
+42 & 1 & 60 & 8 \\\hline
+43 & 2 & 61 & 8 \\\hline
+44 & 4 & 62 & 8 \\\hline
+\end{tabular}
+\label{tab:rho}
+\caption{Pollard Rho method calculations to determine the value of $x$ in $2^x \equiv 58 \mod 83$.}
+\end{table}
+
+\begin{figure}[P]
+\caption{Pollard Rho Code}
+\lstinputlisting[language=Python]{q3_helper.py}
+\end{figure}
