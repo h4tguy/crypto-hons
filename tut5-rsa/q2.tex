@@ -1,0 +1,30 @@
+Since we know both $e$ and $d$ we can find a $k$ such that $k$ is a multiple of $\phi(n)$:
+\begin{eqnarray*}
+    k &=& e \cdot d -1 \\
+    &=& 5 \cdot 317 -1 \\
+    &=& 1584
+\end{eqnarray*}
+
+Now note that $k = 1584 = 2^{4} \cdot 99$, and for every $a \in \mathbb{Z}^{*}_{437}$, $a^{k} = (a^{99})^{4} \equiv 1 (\mod n)$.
+
+We now attempt to find a square root of $1$ in $\mathbb{Z}^{*}_{437}$:
+\begin{eqnarray*}
+    2^{99} \mod 437 = 208 \neq 1 \\
+    (2^{99})^{2^{1}} \mod 437 = 1
+\end{eqnarray*}
+
+This means that $\pm 2^{99}$ are non-trivial square roots of $1 \mod 437$, which can now be used to factor 437.
+
+\begin{eqnarray*}
+    208^{2} \equiv 1 \mod 437 \\
+    208^{2} - 1 \equiv 0 \mod 437 \\
+    (208 + 1)(208 - 1) \equiv 0 \mod 437
+\end{eqnarray*}
+Therefore either 207 or 209 share a non-trivial common factor with 437.
+
+\begin{eqnarray*}
+    gcd(209,437) = 19 \\
+    gcd(207,547) = 1
+\end{eqnarray*}
+
+Since 19 is prime it is a prime factor of 437, wich imediately gives that 23 is the other prime factor of 437.
