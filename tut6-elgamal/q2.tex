@@ -1,0 +1,37 @@
+Let's execute this method for $m = \sqrt{16} = 4$. We can find that $16^{-1} \equiv 19 \mod 101$ using the fact that $16$ has order $25 \mod 101$. We then undertake the Baby-step Giant-step method, as detailed in Table \ref{tab:baby} and Table \ref{tab:giant}. 
+
+From our calculations, we can see that $52 \times 16^{-1} \equiv 16^{16} \mod 101$. This means that
+
+\[16^{16+1} \equiv 16^{17} \equiv 52 \mod 101.\] Therefore, $x=17$.
+
+\begin{table}
+\centering
+\begin{tabular}{l l}
+r & $52(16^{-1})^{r} \mod 101$ \\\hline
+0 & 52 \\\hline
+1 & 79 \\\hline
+2 & 87 \\\hline
+3 & 37 \\\hline
+\end{tabular}
+\caption{Baby steps for the Baby-step Giant-step method in Question 2}
+\label{tab:baby}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{l l}
+i & $16^{ 4 i} \mod 101$ \\\hline
+0 & 1 \\\hline
+1 & 88 \\\hline
+2 & 68 \\\hline
+3 & 25 \\\hline
+4 & 79 \\\hline
+\end{tabular}
+\caption{Giant steps for the Baby-step Giant-step method in Question 2}
+\label{tab:giant}
+\end{table}
+
+\begin{figure}[P]
+\caption{Baby-step Giant-step method Code}
+\lstinputlisting[language=Python]{q2_helper.py}
+\end{figure}
