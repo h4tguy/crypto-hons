@@ -1,5 +1,51 @@
 \begin{enumerate}
-\item
-\item
-\item
+\item Alice's signature consists of the numbers $r = g^k\mod p$ and
+  $s = k^{-1}(H(M) - ar)\mod (p-1)$
+  \begin{align*}
+    r &= 2^{11} \mod 101 \\
+      &\equiv 28 \mod 101 \\
+    s &= 11^{-1}(6 - 42 \cdot 28)\mod 100 \\
+      &\equiv 91 \cdot 30\mod 100 \\
+      &\equiv 30 \mod 100\\
+  \end{align*}
+  As $11^{-1} = 91\mod 100$, by the extended Euclidean algorithm. Therefore, Alice's signature is $(28, 30)$
+
+\item Alice's public key consists of $p = 101$, $g = 2$ and $g^a \mod p = 2^{42}
+  \mod 101 = 43$, so her public key is $(101, 2, 43)$.
+
+  To verify Alice's signature, Bob computes $g^{H(M)} \mod p = 2^6 \mod 101 = 64$
+  and compares it with
+  \begin{align*}
+    (g^a)^r \cdot r^s \mod p &= 43^{28} \cdot 28^{30} \mod 101 \\
+                             &= 81 \cdot 17 \mod 101 \\
+                             &= 64 \\
+  \end{align*}
+  These numbers are the same modulo $101$, so Bob has verified Alice's signature.
+
+\item Given that $s = k^{-1}(H(M) - ar)\mod (p-1)$, we know that
+  \begin{align*}
+    ar &= (H(M) - sk) \mod (p-1) \\
+    28a &= 6 - 30 \cdot 11 \mod 100 \\
+    28a &= 76 \mod 100 \\
+    7a &= 19 \mod 25 \\
+  \end{align*}
+
+  But we can use the extended Euclidean algorithm to find $7^{-1} \mod 25$:
+  \begin{align*}
+    25 &= 3\cdot7 + 4 \\
+    7 &= 4 + 3 \\
+    4 &= 3 + 1 \\
+    \\
+    1 &= 4 - 3 \\
+      &= 4 - 7 + 4 \\
+      &= 2(25 - 3\cdot7) -7 \\
+      &= 2\cdot25 - 7\cdot7 \\
+  \Rightarrow 7^{-1} &= -7 = 18 \mod 25 \\
+      \Rightarrow a &= 18 \cdot 19 \mod 25 \\
+                    &= 17 \mod 25 \\
+  \end{align*}
+  So we have that $a$ is one of $17$, $42$, $67$ or $92$ modulo 100. Substituting
+  these values into $2^{a} \mod 101 = 43$ (available in Alice's public key), we
+  find that $a = 43$.
+
 \end{enumerate}
