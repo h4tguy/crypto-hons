@@ -37,7 +37,8 @@
       &= 17 \mod 25 \\
   \end{align*}
   Since $a \equiv 17 \mod 25$, it must be equivalent to either $17$, $42$, $67$ or
-  $92$ modulo $100$. Substituting these values into $2^{a} \mod 101 = 43$
-  (available in Alice's public key), we find that $a = 43$.
+  $92$ modulo $100$. Alice's public key tells us that $g \equiv 2 \mod 101$ and
+  that $g^a \equiv 43 \mod 101$, so we can try each of our $4$ values for $a$.
+  Doing this shows that $a = 43$ satisfies $2^a \equiv 43 \mod 101$.
 
 \end{enumerate}
