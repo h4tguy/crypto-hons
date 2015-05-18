@@ -54,13 +54,13 @@ Since the group order is 5 this DLP can also be solved trivially via brute force
 \end{eqnarray}
 
 Using equations (5) and (6) we can now calculate the DLP for x in the subgroup of order 25:
-\begin{eqnarray*}
+\begin{eqnarray}
     x &\equiv& x_{0} + 5 \cdot x_{1} \mod 25\\
     &\equiv& 3 + 5 \cdot 2 \mod 25 \\
     &\equiv& 13 \mod 25
-\end{eqnarray*}
+\end{eqnarray}
 
-We can now use the Chinese Remainder Theorem to solve for x:
+Finally we can use the Chinese Remainder Theorem to solve for x using equation (2) and (9):
 \begin{eqnarray*}
     x &=& 2 \cdot 25 \cdot (25^{-1} \mod 3) + 13 \cdot 3 \cdot (3^{-1} \mod 25) \mod 75 \\
     &=& 50 + 663 \mod 75 \\
