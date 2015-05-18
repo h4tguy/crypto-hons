@@ -1,44 +1,46 @@
 \begin{enumerate}
-\item Alice's signature consists of the numbers $r = g^k\mod p$ and
-  $s = k^{-1}(H(M) - ar)\mod (p-1)$
+\item Alice's signature consists of the numbers $r \equiv g^k\mod p$ and
+  $s \equiv k^{-1}(H(M) - ar)\mod (p-1)$
   \begin{align*}
-    r &= 2^{11} \mod 101 \\
+    r &\equiv 2^{11} \mod 101 \\
       &\equiv 28 \mod 101 \\
-    s &= 11^{-1}(6 - 42 \cdot 28)\mod 100 \\
+    s &\equiv 11^{-1}(6 - 42 \cdot 28)\mod 100 \\
       &\equiv 91 \cdot 30\mod 100 \\
       &\equiv 30 \mod 100\\
   \end{align*}
-  As $11^{-1} = 91\mod 100$, by the extended Euclidean algorithm. Therefore, Alice's signature is $(28, 30)$
+  As $11^{-1} \equiv 91\mod 100$, by the extended Euclidean algorithm. Therefore,
+  Alice's signature is $(28, 30)$
 
 \item Alice's public key consists of $p = 101$, $g = 2$ and $g^a \mod p = 2^{42}
-  \mod 101 = 43$, so her public key is $(101, 2, 43)$.
+\mod 101 \equiv 43 \mod 101$, so her public key is $(101, 2, 43)$.
 
-  To verify Alice's signature, Bob computes $g^{H(M)} \mod p = 2^6 \mod 101 = 64$
-  and compares it with
+  To verify Alice's signature, Bob computes $g^{H(M)} \mod p \equiv 2^6 \mod 101
+  \equiv 64 \mod 101$ and compares it with
   \begin{align*}
-    (g^a)^r \cdot r^s \mod p &= 43^{28} \cdot 28^{30} \mod 101 \\
-                             &= 81 \cdot 17 \mod 101 \\
-                             &= 64 \\
+    (g^a)^r \cdot r^s \mod p &\equiv 43^{28} \cdot 28^{30} \mod 101 \\
+                             &\equiv 81 \cdot 17 \mod 101 \\
+                             &\equiv 64 \mod 101\\
   \end{align*}
-  These numbers are equivalent modulo $101$, so Bob has verified Alice's signature.
+  These numbers are equivalent modulo $101$, so Bob has verified Alice's signature
+  .
 
-\item Given that $s = k^{-1}(H(M) - ar)\mod (p-1)$, we know that
+\item Given that $s \equiv k^{-1}(H(M) - ar)\mod (p-1)$, we know that
   \begin{align*}
-    ar &= (H(M) - sk) \mod (p-1) \\
-    28a &= 6 - 30 \cdot 11 \mod 100 \\
-    28a &= 76 \mod 100 \\
-    7a &= 19 \mod 25 \\
+    ar &\equiv (H(M) - sk) \mod (p-1) \\
+    28a &\equiv 6 - 30 \cdot 11 \mod 100 \\
+    28a &\equiv 76 \mod 100 \\
+    7a &\equiv 19 \mod 25 \\
   \end{align*}
 
   But we can use the extended Euclidean algorithm to find that $7^{-1} \mod 25
-  = 18 \mod 25$, which gives:
+  \equiv 18 \mod 25$, which gives:
   \begin{align*}
-    a &= 18 \cdot 19 \mod 25 \\
-      &= 17 \mod 25 \\
+    a &\equiv 18 \cdot 19 \mod 25 \\
+      &\equiv 17 \mod 25 \\
   \end{align*}
   Since $a \equiv 17 \mod 25$, it must be equivalent to either $17$, $42$, $67$ or
   $92$ modulo $100$. Alice's public key tells us that $g \equiv 2 \mod 101$ and
   that $g^a \equiv 43 \mod 101$, so we can try each of our $4$ values for $a$.
-  Doing this shows that $a = 43$ satisfies $2^a \equiv 43 \mod 101$.
+  Doing this shows that $a \equiv 43 \mod 101$ satisfies $2^a \equiv 43 \mod 101$.
 
 \end{enumerate}
