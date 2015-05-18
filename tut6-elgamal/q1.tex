@@ -36,8 +36,8 @@
     a &= 18 \cdot 19 \mod 25 \\
       &= 17 \mod 25 \\
   \end{align*}
-  So we have that $a$ is one of $17$, $42$, $67$ or $92$ modulo 100. Substituting
-  these values into $2^{a} \mod 101 = 43$ (available in Alice's public key), we
-  find that $a = 42$.
+  Since $a \equiv 17 \mod 25$, it must be equivalent to either $17$, $42$, $67$ or
+  $92$ modulo $100$. Substituting these values into $2^{a} \mod 101 = 43$
+  (available in Alice's public key), we find that $a = 43$.
 
 \end{enumerate}
