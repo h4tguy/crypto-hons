@@ -30,22 +30,14 @@
     7a &= 19 \mod 25 \\
   \end{align*}
 
-  But we can use the extended Euclidean algorithm to find $7^{-1} \mod 25$:
+  But we can use the extended Euclidean algorithm to find that $7^{-1} \mod 25
+  = 18 \mod 25$, which gives:
   \begin{align*}
-    25 &= 3\cdot7 + 4 \\
-    7 &= 4 + 3 \\
-    4 &= 3 + 1 \\
-    \\
-    1 &= 4 - 3 \\
-      &= 4 - 7 + 4 \\
-      &= 2(25 - 3\cdot7) -7 \\
-      &= 2\cdot25 - 7\cdot7 \\
-  \Rightarrow 7^{-1} &= -7 = 18 \mod 25 \\
-      \Rightarrow a &= 18 \cdot 19 \mod 25 \\
-                    &= 17 \mod 25 \\
+    a &= 18 \cdot 19 \mod 25 \\
+      &= 17 \mod 25 \\
   \end{align*}
   So we have that $a$ is one of $17$, $42$, $67$ or $92$ modulo 100. Substituting
   these values into $2^{a} \mod 101 = 43$ (available in Alice's public key), we
-  find that $a = 43$.
+  find that $a = 42$.
 
 \end{enumerate}
