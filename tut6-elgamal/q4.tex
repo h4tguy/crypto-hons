@@ -1,10 +1,12 @@
-The order of $49$ in the group $\mathbb{Z}^{*}_{151}$ is $N = 75 = 3 \cdot 5^{2}$.
-
+First in order to solve the DLP for:
 \begin{eqnarray}
     49^{x} \equiv 144 \mod 151
 \end{eqnarray}
 
-Raise both sides of (1) to $5^{2}$, this will give us a DLP in a subgroup of order 3, which is prime.
+We need to find the prime factors of the order of $49$ in the group 
+$\mathbb{Z}^{*}_{151}$. They are $N = 75 = 3 \cdot 5^{2}$.
+
+Raising both sides of equation (1) to $5^{2}$, will give us a DLP in a subgroup of order 3, which is prime.
 \begin{eqnarray*}
     (49^{5^{2}})^{x} \equiv 144^{5^{2}} \mod 151 \\
     32^{x} \equiv 118 \mod 151
@@ -16,7 +18,7 @@ Since the order of 32 is 3, this DLP can be trivially solved using brute force y
 \end{eqnarray}
 
 
-Raise both sides of (1) to $3$, this will give us a DLP in a subgroup of order 25, which is not prime.
+Raising both sides of equation (1) to $3$, will give us a DLP in a subgroup of order 25, which is not prime.
 \begin{eqnarray*}
     (49^{3})^{x} \equiv 144^{3} \mod 151 \\
     20^{x} \equiv 110 \mod 151
@@ -31,7 +33,7 @@ The DLP can now be written as:
     20^{x_0} \cdot 20^{5 \cdot x_{1}} \mod 151
 \end{eqnarray}
 
-Raising (4) to 5, yields a DLP for $x_{0}$ in a group of order 5:
+Raising equation (4) to 5, yields a DLP for $x_{0}$ in a group of order 5:
 \begin{eqnarray*}
     110^{5} \equiv (20^{5})^{x_0} \mod 151 \\ 
     59 \equiv 8^{x_{0}} \mod 151
@@ -41,7 +43,7 @@ Since the order of 8 is 5 it can be easily solved using brute force:
     x_{0} \equiv 3 \mod 5
 \end{eqnarray}
 
-Multiplying (4) through by $20^{-x_{0}} = 20^{-3} \equiv 20^{22} \equiv 50 \mod 151$ yields a DLP for $x_{1}$ in a group of order 5:
+Multiplying (4) through by $20^{-x_{0}} \equiv 20^{-3} \equiv 20^{22} \equiv 50 \mod 151$ yields a DLP for $x_{1}$ in a group of order 5:
 \begin{eqnarray*}
     110 \cdot 50 \equiv 20^{5 \cdot x_{1}} \mod 151 \\
     64 \equiv 8^{x_{1}} \mod 151
@@ -51,7 +53,7 @@ Since the group order is 5 this DLP can also be solved trivially via brute force
     x_{1} \equiv 2 \mod 5
 \end{eqnarray}
 
-We can now calculate x:
+Using equations (5) and (6) we can now calculate the DLP for x in the subgroup of order 25:
 \begin{eqnarray*}
     x &\equiv& x_{0} + 5 \cdot x_{1} \mod 25\\
     &\equiv& 3 + 5 \cdot 2 \mod 25 \\
